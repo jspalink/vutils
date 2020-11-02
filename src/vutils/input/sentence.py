@@ -1,4 +1,3 @@
-from .sentence_word_collection import SentenceWordCollection
 import logging
 log = logging.getLogger('main')
 
@@ -37,10 +36,6 @@ class Sentence(object):
                 words.append(" ")
             words.append(w.word)
         return ''.join(words)
-    
-    def find_next(self, offset=0, ending_offset=0, *args, **kwargs):
-        sentence_word_collection = SentenceWordCollection(self.sentence_words)
-        return sentence_word_collection.find_next(self.sentence_index, offset, ending_offset)
 
 
 

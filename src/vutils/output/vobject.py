@@ -18,7 +18,7 @@ class VObject(object):
             r['label'] = self.label
         if self.sentence is not None:
             r['sentence'] = self.sentence
-        if self.object_category:
+        if not self.object_category.is_empty:
             r['objectCategory'] = self.object_category.as_dict()
         return r
 

@@ -1,4 +1,3 @@
-from . import SentenceWord
 from .sentence import Sentence
 import logging
 log = logging.getLogger('main')
@@ -68,7 +67,7 @@ class SentenceWordCollection(object):
         @param sentence_index:
         @return:
         """
-        if self.sentences:
+        if not self.sentences:
             self.sentences = list(self.yield_sentences())
         return self.sentences[sentence_index]
     
@@ -87,6 +86,7 @@ class SentenceWordCollection(object):
                 yield s
             return
         
+        self.sentences = list()
         sentence = Sentence()
         sentence_index = 0
         iterator = (x for x in self.sentence_words)
@@ -100,11 +100,12 @@ class SentenceWordCollection(object):
                     sentence = Sentence()
                 sentence.sentence_words.append(current_word)
             
-            except:
+            except Exception as e:
                 if sentence:
                     yield sentence
                     self.sentences.append(sentence)
                 break
+        return
     
     def yield_sentence_batches(self, batch_size=100):
         """
