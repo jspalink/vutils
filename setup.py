@@ -11,7 +11,6 @@ setup(
     version='1.0.0',
     
     package_dir={'': 'src'},
-    namespace_packages=['vutils'],
     packages=find_packages('src'),
     zip_safe=False,
     install_requires=requires,
